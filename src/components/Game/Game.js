@@ -5,6 +5,7 @@ import {WORDS} from '../../data';
 import GuessInput from "../GuessInput";
 import Guesses from "../Guesses";
 import {NUM_OF_GUESSES_ALLOWED} from "../../constants";
+import {checkGuess} from "../../game-helpers";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -16,7 +17,7 @@ function Game() {
 
   function addGuess(guess) {
     if (guesses.length < NUM_OF_GUESSES_ALLOWED) {
-      setGuesses(p => p.concat(guess))
+      setGuesses(p => p.concat([checkGuess(guess, answer)]))
     }
   }
 
