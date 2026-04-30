@@ -13,15 +13,15 @@ import React from 'react';
 
 */
 
-function GuessInput({ addGuess, disabled, onChange, value }) {
+function GuessInput({addGuess, disabled, onChange, value}) {
   function onSubmit(e) {
     e.preventDefault()
     addGuess()
   }
 
-  return (
-    <form className='guess-input-wrapper' onSubmit={onSubmit}>
-      <label htmlFor='guess-input'>Enter guess:</label>
+  return (<form className='guess-input-wrapper' onSubmit={onSubmit}>
+    <label htmlFor='guess-input'>Enter guess:</label>
+    <fieldset className='input-wrapper'>
       <input
         disabled={disabled}
         value={value}
@@ -31,8 +31,9 @@ function GuessInput({ addGuess, disabled, onChange, value }) {
         pattern="[a-zA-Z]{5}"
         name='guess-input'
       />
-    </form>
-  )
+      <button type='submit' className='enter-button'>Enter</button>
+    </fieldset>
+  </form>)
 }
 
 export default GuessInput;
