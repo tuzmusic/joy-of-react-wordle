@@ -259,5 +259,12 @@ h1 {
 
 .key {
     width: 60px;
+    user-select: none;
     aspect-ratio: 1/1;
+    &:hover {
+        opacity: 0.6;
+    }
+    &:active {
+        opacity: 0.3;
+    }
 }

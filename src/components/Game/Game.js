@@ -16,21 +16,34 @@ console.info({answer});
 
 function Game() {
   const [guesses, setGuesses] = useState([]);
+  const [currentGuess, setCurrentGuess] = React.useState('');
 
   const won = guesses.at(-1)?.every(({status}) => status === 'correct')
   const lost = !won && guesses.length === NUM_OF_GUESSES_ALLOWED
 
-  function addGuess(guess) {
+  function addGuess() {
     if (guesses.length < NUM_OF_GUESSES_ALLOWED) {
-      setGuesses(p => p.concat([checkGuess(guess, answer)]))
+      setGuesses(p => p.concat([checkGuess(currentGuess, answer)]))
+    }
+    setCurrentGuess('')
+  }
+
+  function addLetterToGuess(letter) {
+    if (currentGuess.length < 5) {
+      setCurrentGuess(p => p + letter)
     }
   }
 
   return (
     <div>
       <Guesses guesses={guesses}/>
-      <GuessInput addGuess={addGuess} disabled={won || lost}/>
-      <Keyboard guesses={guesses}/>
+      <GuessInput
+        addGuess={addGuess}
+        disabled={won || lost}
+        value={currentGuess}
+        onChange={setCurrentGuess}
+      />
+      {!won && !lost && <Keyboard guesses={guesses} onKeyPress={addLetterToGuess}/>}
       {won && <HappyBanner guessCount={guesses.length}/>}
       {lost && <SadBanner correctAnswer={answer}/>}
     </div>

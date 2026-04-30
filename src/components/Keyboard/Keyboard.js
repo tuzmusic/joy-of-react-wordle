@@ -6,7 +6,7 @@ const rows = [
   'ZXCVBNM'
 ].map(r => r.split(''))
 
-function Keyboard({guesses}) {
+function Keyboard({guesses, onKeyPress}) {
   const allGuessedLetters = guesses?.flat().flat().reduce((acc, {status, letter}) => {
     // if new status is correct, always overwrite
     if (status === 'correct') {
@@ -17,12 +17,11 @@ function Keyboard({guesses}) {
       acc[letter] = status
     }
     // if new status is incorrect, only write if empty
-    if (status === 'incorrect' && acc[status] !== 'correct' || acc[status] !== 'misplaced') {
+    if (status === 'incorrect' && (acc[status] !== 'correct' || acc[status] !== 'misplaced')) {
       acc[letter] = status
     }
     return acc
   }, {})
-  console.log(allGuessedLetters)
 
   return (
     <div className='keyboard'>
@@ -30,9 +29,13 @@ function Keyboard({guesses}) {
         <div className='keyboard-row' key={i}>
           {row.map(key =>
             (
-              <span key={key} className={`key cell ${allGuessedLetters[key] ?? ''}`}>
+              <button
+                key={key}
+                className={`key cell ${allGuessedLetters[key] ?? ''}`}
+                onClick={() => onKeyPress(key)}
+              >
                 {key}
-              </span>
+              </button>
             ))}
         </div>
       ))}

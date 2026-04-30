@@ -13,13 +13,10 @@ import React from 'react';
 
 */
 
-function GuessInput({ addGuess, disabled }) {
-  const [guess, setGuess] = React.useState('');
-
+function GuessInput({ addGuess, disabled, onChange, value }) {
   function onSubmit(e) {
     e.preventDefault()
-    addGuess(guess)
-    setGuess('')
+    addGuess()
   }
 
   return (
@@ -27,8 +24,8 @@ function GuessInput({ addGuess, disabled }) {
       <label htmlFor='guess-input'>Enter guess:</label>
       <input
         disabled={disabled}
-        value={guess}
-        onChange={e => setGuess(e.target.value.toUpperCase())}
+        value={value}
+        onChange={e => onChange(e.target.value.toUpperCase())}
         id='guess-input'
         type='text'
         pattern="[a-zA-Z]{5}"
