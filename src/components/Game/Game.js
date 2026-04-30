@@ -7,6 +7,7 @@ import Guesses from "../Guesses";
 import {NUM_OF_GUESSES_ALLOWED} from "../../constants";
 import {checkGuess} from "../../game-helpers";
 import {HappyBanner, SadBanner} from "../Banners";
+import Keyboard from "../Keyboard";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -29,6 +30,7 @@ function Game() {
     <div>
       <Guesses guesses={guesses}/>
       <GuessInput addGuess={addGuess} disabled={won || lost}/>
+      <Keyboard guesses={guesses}/>
       {won && <HappyBanner guessCount={guesses.length}/>}
       {lost && <SadBanner correctAnswer={answer}/>}
     </div>
