@@ -241,10 +241,6 @@ h1 {
 
 .keyboard {
     --key-gap: 0.5rem;
-    position: fixed;
-    bottom: 1rem;
-    left: 0;
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: var(--key-gap);
@@ -258,9 +254,11 @@ h1 {
 }
 
 .key {
-    width: 60px;
+    /* this will let us get wider than the container! */
+    min-width: 50px;
+    font-size: 20px;
     user-select: none;
-    aspect-ratio: 1/1;
+
     &:hover {
         opacity: 0.6;
     }
@@ -268,6 +266,7 @@ h1 {
         opacity: 0.3;
     }
 }
+
 .input-wrapper {
     border: none;
     display: flex;

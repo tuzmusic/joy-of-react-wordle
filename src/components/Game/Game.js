@@ -35,7 +35,7 @@ function Game() {
   }
 
   return (
-    <div>
+    <>
       <Guesses guesses={guesses}/>
       <GuessInput
         addGuess={addGuess}
@@ -43,10 +43,10 @@ function Game() {
         value={currentGuess}
         onChange={setCurrentGuess}
       />
-      {!won && !lost && <Keyboard guesses={guesses} onKeyPress={addLetterToGuess}/>}
+      <Keyboard guesses={guesses} onKeyPress={addLetterToGuess}/>\
       {won && <HappyBanner guessCount={guesses.length}/>}
       {lost && <SadBanner correctAnswer={answer}/>}
-    </div>
+    </>
   )
 }
 

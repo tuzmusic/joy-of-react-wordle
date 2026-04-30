@@ -17,7 +17,7 @@ function Keyboard({guesses, onKeyPress}) {
       acc[letter] = status
     }
     // if new status is incorrect, only write if empty
-    if (status === 'incorrect' && (acc[status] !== 'correct' || acc[status] !== 'misplaced')) {
+    if (status === 'incorrect' && (acc[status] !== 'correct' && acc[status] !== 'misplaced')) {
       acc[letter] = status
     }
     return acc
